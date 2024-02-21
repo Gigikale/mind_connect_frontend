@@ -1,22 +1,24 @@
-import {Icon} from "@iconify/react";
+import { CiLock, CiUnlock } from "react-icons/ci";
 
-function PasswordFormField({title = '', visible = false, id = 'password', onValueChanged, onToggle, value}) {
+function PasswordFormField({title = '', visible = false, placeholder= '', id = 'password', onValueChanged, onToggle, value}) {
     return (
         <>
-            <p className="text-zinc-800 text-left text-lg font-medium self-stretch w-full mt-6 max-md:max-w-full max-md:mt-6"
-               style={{fontFamily: 'Urbanist'}}
+            <p className="text-sm font-medium leading-5 text-neutral-800"
+               style={{fontFamily: 'Inter'}}
             > { title } </p>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <input
                     type={visible ? "text" : "password"}
                     id={ id }
                     value={ value }
+                    placeholder={ placeholder }
                     onChange={e => onValueChanged(e.target.value)}
                     style={{ padding: '1rem', flex: '1' }}
-                    className="border bg-gray-200 flex shrink-0 max-w-full h-[50px] flex-col mt-1 rounded-md border-solid border-zinc-600"
+                    className="justify-center items-start py-3 pr-16 pl-3 mt-1 text-base leading-6 bg-white rounded border border-solid 
+                    border-[color:var(--Gray-400,#BDBDBD)] text-neutral-500 max-md:pr-5 h-12 w-600"
                 />
                 <div style={{ marginLeft: '-2rem', cursor: 'pointer' }} onClick={onToggle}>
-                    {visible ? <Icon icon="ph:eye" /> : <Icon icon="ph:eye-slash" />}
+                    {visible ? <CiLock /> : <CiUnlock />}
                 </div>
             </div>
         </>
