@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {SnackbarProvider} from "notistack";
 import LandingPage from "./pages/home/dashboard/LandingPage";
+import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
 import HomePage from "./pages/home/HomePage";
 import GroupPage from "./pages/home/GroupPage";
-import LoginPage from "./pages/home/dashboard/LoginPage";
 import OurRoutes from "./commons/OurRoutes"
 import VerifyEmailPage from "./pages/auth/VerifyEmailPage";
 import ConfirmEmail from "./pages/auth/ConfirmEmailPage";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import ChangePasswordPage from "./pages/auth/ChangePasswordPage";
+import PostPage from "./pages/home/post/PostPage";
 import ProfilePage from "./pages/home/profile/ProfilePage";
 import SuccessfulModal from "./components/popups/SuccessfulModal";
 import CreatedGroupSuccessModal from "./components/popups/CreatedGroupSuccessmodal";
@@ -38,6 +39,7 @@ function App() {
           <Route path={OurRoutes.homepage} element={<HomePage />} />
           <Route path={OurRoutes.grouppage} element={<GroupPage />} />
           <Route path={OurRoutes.login} element={<LoginPage />} />
+          <Route path={OurRoutes.post} element={<PostPage/>}/>
           <Route path={OurRoutes.profilepage } element={<ProfilePage />} />
           <Route path={OurRoutes.successfulmodal } element={<SuccessfulModal />} />
           <Route path={OurRoutes.Createdgroupsuccessmodal } element={<CreatedGroupSuccessModal />} />

@@ -1,12 +1,16 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
-import { Link, redirect, useNavigate } from "react-router-dom";
 import SweetAlert from "../../commons/SweetAlert";
 import axiosConfig from "../../services/api/axiosConfig";
 import OurRoutes from "../../commons/OurRoutes";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom"
 import { wait } from "@testing-library/user-event/dist/utils";
+import { CircularProgress } from "@mui/material";
+import error from "../../assets/error.gif";
+import success from "../../assets/success.gif";
+import emails from "../../assets/email_sent.png"
 
 
 
@@ -31,16 +35,16 @@ import { wait } from "@testing-library/user-event/dist/utils";
         console.log(token)
         console.log(isMounted)
 
-        if(!isMounted.current) {
-            if(token != null) {
-                verifyEmailAddress(token)
-                decodeJWT(token)
-            } else {
-                SweetAlert("Invalid request. You will be redirected to signup", 'info')
-                handleRedirect(OurRoutes.signup)
-            }
-            isMounted.current = true;
-        }
+        // if(!isMounted.current) {
+        //     if(token != null) {
+        //         verifyEmailAddress(token)
+        //         decodeJWT(token)
+        //     } else {
+        //         SweetAlert("Invalid request. You will be redirected to signup", 'info')
+        //         handleRedirect(OurRoutes.signup)
+        //     }
+        //     isMounted.current = true;
+        // }
     }
 
     const handleRedirect = async (route) => {
@@ -99,34 +103,80 @@ import { wait } from "@testing-library/user-event/dist/utils";
     }
 
   return (
-    <div class="w-full h-full pl-[480px] pr-[481px] pt-[200px] bg-white justify-center items-center inline-flex">
-      <div class="self-stretch p-12 bg-slate-50 rounded-3xl flex-col justify-center items-center gap-10 inline-flex">
-        <div class="w-14 h-14 relative">
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/79b86c362bd9e83a06db08433a4a9d4ac58c0b6f79d2ba429a64efccf9a552f3?"
-            className="w-14 aspect-square"
-            alt="envelope"
-          />
+
+    <div style={{ margin: 0, padding: 0, backgroundColor: "white", position: "relative", height: "100vh"}}>
+    {
+        loading ? <div style={{ position: "absolute", top: "45%", right: "45%"}}>
+            <CircularProgress size="70px" style={{ color: '#082567' }} />
         </div>
-        <div class="text-sky-950 text-2xl font-bold font-['Inter'] leading-normal">Verify your email</div>
-        <div class="flex-col justify-center items-center gap-8 flex">
-          <div class="flex-col justify-start items-start gap-2 flex">
-            <div class="text-center text-gray-900 text-sm font-normal font-['Inter'] leading-tight">Hi there, use the link below to verify<br />your email and start enjoying MindConnect</div>
-          </div>
-          {/* <div class="w-[383px] h-10 px-4 py-3 bg-blue-700 rounded-md justify-center items-center gap-2 inline-flex"> */}
-            <Button type="submit"  text="Verify Email" className="w-[383px] h-10 px-4 py-3 bg-blue-700 rounded-md justify-center items-center gap-2 inline-flex" />
-          {/* </div> */}
-          <div class="flex-col justify-start items-start gap-2 flex">
-            <div class="text-center text-gray-900 text-sm font-normal font-['Inter'] leading-tight">Didn't get the link?</div>
-          </div>
-          <div class="w-[383px] h-10 px-4 py-3 bg-blue-700 rounded-md justify-center items-center  inline-flex">
-            <Button type="submit"  text="Resend link"  onClick={handleResend}/>
-          </div>
-          <Button type="submit" text="Verify Email" className="text-white text-base font-semibold font-['Inter'] leading-snug tracking-tight justify-center items-center self-stretch px-16 py-3 mt-8 text-base font-semibold tracking-normal leading-6 text-white whitespace-nowrap bg-blue-700 rounded-md" />
+        : <div style={{ position: "absolute", top: "20%", right: "30%"}}>
+            <div className="flex flex-col justify-center items-center" style={{
+                backgroundColor: "lightblue",
+                padding: "20px 80px",
+                borderRadius: "24px",
+                width: "500px"
+            }}>
+                <div className="text-zinc-800 text-center text-base font-medium tracking-normal"
+                    style={{marginBottom: "15px"}}
+                >
+                    {
+                        emailSent ? <>
+                            <span className="font-medium white">
+                                An email has been sent to{" "}
+                            </span>
+                            <span className="font-semibold text-zinc-800">
+                                { email }
+                            </span>
+                            <span className="font-medium white">
+                                . Follow the steps in the email to get verified.
+                            </span>
+                        </>
+                        : verified ? <span className="font-semibold text-white" style={{fontSize: "16px"}}>
+                            Hello { email + ", " } { message.toLowerCase() + " " }
+                        </span>
+                        : <p className="font-semibold text-white" style={{fontSize: "18px"}}>
+                            Hello { email + ", " } { message.toLowerCase() }
+                        </p>
+                    }
+                </div>
+                <img
+                    loading="lazy"
+                    alt="loading"
+                    srcSet={ verified ? success : emailSent ? emails : error }
+                    className="object-contain items-center object-center overflow-hidden
+                    self-center mt-8"
+                />
+                <div className="text-neutral-400 text-center text-base font-medium tracking-normal mt-11" style={{
+                    color: "#08284E"
+                }}>
+                    {
+                        verified
+                            ? "Welcome to MindConnect. You will be redirected shortly to login."
+                            : emailSent
+                                ? "Didn't get the reset link?"
+                                : "Couldn’t confirm your email?"
+                    }
+                </div>
+                {
+                    verified ? <div></div> : <Button
+                        onClick={ handleResend }
+                        className="text-zinc-800 text-center text-xl font-bold whitespace-nowrap
+                            justify-center items-center self-center max-w-full mt-4 px-16
+                            py-4 rounded-md max-md:px-5"
+                        style={{ backgroundColor: "#F8F5FC" }}
+                    
+                        text="Resend email"
+                    />
+                }
+                <Link
+                    to={ OurRoutes.login }
+                    className="text-sky-950 text-center text-base font-medium
+                    underline self-center whitespace-nowrap mt-4">
+                    Back to Login
+                </Link>
+            </div>
         </div>
-      </div>
-    </div>
+    }</div>
   );
 }
 

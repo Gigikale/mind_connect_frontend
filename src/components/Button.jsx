@@ -53,4 +53,5 @@ export function GrayButton({text = '', onClick, isWhite = false, type = ''}) {
             >{ text } </button>
         </>
     )
+ 
 }

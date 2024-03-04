@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'login-background': "url('/src/assets/cloudblur.jpg')",
+      }
+    },
   },
   plugins: [],
 }

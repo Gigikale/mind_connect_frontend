@@ -6,14 +6,14 @@ function PasswordFormField({title = '', visible = false, placeholder= '', id = '
             <p className="text-sm font-medium leading-5 text-neutral-800"
                style={{fontFamily: 'Inter'}}
             > { title } </p>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', width: "100%" }}>
                 <input
                     type={visible ? "text" : "password"}
                     id={ id }
                     value={ value }
                     placeholder={ placeholder }
                     onChange={e => onValueChanged(e.target.value)}
-                    style={{ padding: '1rem', flex: '1' }}
+                    style={{ padding: '1rem', width: "100%" }}
                     className="justify-center items-start py-3 pr-16 pl-3 mt-1 text-base leading-6 bg-white rounded border border-solid 
                     border-[color:var(--Gray-400,#BDBDBD)] text-neutral-500 max-md:pr-5 h-12 w-600"
                 />

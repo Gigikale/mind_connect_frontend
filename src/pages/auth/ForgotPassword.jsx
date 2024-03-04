@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
+import OurRoutes from "../../commons/OurRoutes";
 
 
-function ForgotPassword(props) {
+function ForgotPassword() {
     return (
         <div className="flex justify-center items-center px-16 py-12 text-base leading-6 bg-white max-md:px-5">
-            <div className="flex flex-col justify-end p-12 mt-36 max-w-full bg-white rounded-3xl shadow-sm w-[479px] max-md:px-5 max-md:mt-10">
+            <div className="flex flex-col justify-end p-12 mt-36 max-w-full bg-white rounded-3xl shadow-lg w-[479px] max-md:px-5 max-md:mt-10">
                 <div className="self-center text-2xl font-bold leading-6 whitespace-nowrap text-sky-950">
                     Forgot Password
                 </div>
@@ -25,7 +26,7 @@ function ForgotPassword(props) {
                 </div>
                 <Button type="submit" text="Reset Password" className="text-white text-base font-semibold font-['Inter'] leading-snug tracking-tight justify-center items-center px-16 py-3 mt-8 mb-10 font-semibold tracking-normal text-white whitespace-nowrap bg-blue-700 rounded-md" />
                 <div className="self-center mt-10 mb-12 font-medium tracking-normal text-blue-700 whitespace-nowrap">
-                    <Link>Back to Login</Link>
+                    <Link to={OurRoutes.login}>Back to Login</Link>
                 </div>
             </div>
         </div>

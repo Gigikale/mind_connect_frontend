@@ -1,9 +1,13 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { SlHome } from "react-icons/sl";
+import { RiGroupLine } from "react-icons/ri";
+import OurRoutes from "../../commons/OurRoutes";
 
 function OnboardingHeader(props) {
   return (
-    <div className="flex flex-col pb-12 whitespace-nowrap bg-slate-50">
-      <div className="flex flex-col justify-center py-5 w-full bg-white shadow-sm leading-[140%] max-md:max-w-full">
+    <div className="flex flex-col">
+      <div className="flex flex-col justify-center py-5 w-full bg-white shadow-sm leading-[140%] max-md:max-w-full border-b h-24">
         <div className="flex justify-center items-center px-16 w-full max-md:px-5 max-md:max-w-full">
           <div className="flex gap-5 justify-between w-full max-w-[1192px] max-md:flex-wrap max-md:max-w-full">
             <div className="flex flex-col text-3xl font-bold tracking-wide text-blue-700">
@@ -11,14 +15,17 @@ function OnboardingHeader(props) {
               <div className="shrink-0 mt-1 h-2 bg-blue-700 rounded-md" />
             </div>
             <div className="flex gap-5 justify-between my-auto text-base tracking-normal text-gray-400">
-              <div className="flex gap-5 justify-between px-4 py-3 bg-gray-50 rounded-md border border-solid border-[color:var(--Grey-400,#98A2B3)]">
-                <div>Search</div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7b5d5964bf4db3f26e21e766437185137c09c65fa7bbd13efaf38e1f51fdce5?"
-                  className="self-start w-5 aspect-square"
-                />
-              </div>
+              <form className="h-[46px] w-[329px] flex gap-5 justify-between px-4 py-3 bg-gray-50 rounded-md border border-solid border-[color:var(--Grey-400,#98A2B3)]">
+                <input type="text" placeholder="Search" className="bg-inherit focus:outline-none" />
+                <button>
+                  <img
+                    loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7b5d5964bf4db3f26e21e766437185137c09c65fa7bbd13efaf38e1f51fdce5?"
+                    className="self-start w-5 aspect-square"
+                  />
+                </button>
+
+              </form>
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/dbfdeba8f427f2d4aad1c13cab9c9129ba8ff7b882e296243a55d0e4493c5bc3?"
@@ -32,20 +39,22 @@ function OnboardingHeader(props) {
         <div className="flex gap-5 justify-between w-full max-w-[1226px] max-md:flex-wrap max-md:max-w-full">
           <div className="flex gap-5 justify-between items-start tracking-normal text-gray-500 leading-[140%] max-md:flex-wrap max-md:max-w-full">
             <div className="flex gap-2 justify-center px-4 py-3 rounded-md">
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/a71e7bb61c82c7a05fc69313dd7c1daade4d130efa92d8350e5be85de1c40718?"
-                className="self-start w-5 aspect-square"
-              />
-              <div>Home</div>
+              <Link className="flex gap-2"
+                to={OurRoutes.homepage}
+              >
+                <SlHome />
+                Home
+              </Link>
+
+
             </div>
             <div className="flex gap-2 justify-center px-4 py-3 rounded-md">
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/780a065607c7a1814fc14a6a96ae6ac152f4647a72e39cec40f9e23f209b9137?"
-                className="self-start w-5 aspect-square"
-              />
-              <div className="grow">Groups</div>
+              <Link className="flex gap-2"
+              to={OurRoutes.grouppage}
+              >
+              <RiGroupLine />
+              Groups
+              </Link>
             </div>
             <div className="flex gap-2 justify-center px-4 py-3 rounded-md">
               <img

@@ -1,11 +1,12 @@
 import * as React from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import Conditions from "../popups/Conditions"
 
 function DropdownField({ placeHolder = '', list = [], onSelected, isCustom = false, isSearchable = false }) {
     const [open, setOpen] = React.useState(false);
-    const [text, setText] = React.useState(placeHolder)
-    const [index, setIndex] = React.useState(-1)
-    const [search, setSearch] = React.useState('')
+    const [text, setText] = React.useState(placeHolder);
+    const [index, setIndex] = React.useState(-1);
+    const [search, setSearch] = React.useState('');
 
     
     const handleSelect = (item) => {
@@ -17,6 +18,11 @@ function DropdownField({ placeHolder = '', list = [], onSelected, isCustom = fal
     const handleHover = (key) => {
         setIndex(key)
     }
+
+    const handleOpenConditions = () => {
+        setOpen(!open)
+    }
+
 
     const hoverStyle = {
         backgroundColor: "#eff",
@@ -32,7 +38,7 @@ function DropdownField({ placeHolder = '', list = [], onSelected, isCustom = fal
     return (
         <>
             <div
-                
+                 onClick={handleOpenConditions}
                 className="font-inter my-[20px] flex justify-between top-5 min-w-full left-0 bg-white
                 mt-10 px-4 py-4 rounded-md focus:outline-none focus:border-blue-500
                 cursor-pointer items-center h-[50px]"

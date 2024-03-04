@@ -1,11 +1,11 @@
 import * as React from "react";
-import SidebarImage from '../assets/SidebarImage.png'
+import SidebarImage from '../../assets/SidebarImage.png'
 
 
 function Sidebar(props) {
   return (
-    <div className="flex flex-col px-5 py-11 mx-auto w-full text-base leading-6 bg-white shadow-sm max-w-[480px]">
-      <div className="flex flex-col px-2 py-4 w-full bg-white rounded-2xl shadow-sm">
+    <div className="flex flex-col px-5 pt-10 pb-14 mx-auto w-full text-base leading-6 bg-white shadow-sm max-w-[480px] mt-20 mr-24">
+      <div className="flex flex-col px-2 py-4 w-full bg-white rounded-md shadow-md border-t ">
         <div className="self-center font-semibold tracking-normal text-center text-blue-600">
           Suggestions
         </div>
